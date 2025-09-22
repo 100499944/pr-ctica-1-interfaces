@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro | Mochileras Sin Fronteras</title>
+  <link rel="stylesheet" href="style/estilos.css"/>
+</head>
+<body>
+  <!-- CABECERA (igual que tu index para mantener coherencia) -->
+  <header>
+    <div class="container wrap">
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo Mochileras Sin Fronteras" />
+        Mochileras Sin Fronteras
+      </div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#">Experiencias</a></li>
+          <li><a href="#">Consejos</a></li>
+          <li><a href="#">Foro</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="idioma">
+        <select aria-label="Idioma">
+          <option>ES</option>
+          <option>EN</option>
+          <option>FR</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO: FORMULARIO DE REGISTRO (Versión a) -->
+  <main class="container" style="max-width:900px;">
+    <section class="panel widget form" aria-label="Registro de usuaria" style="padding:20px;">
+      <h1>Registro de nueva usuaria</h1>
+
+      <!-- Formulario SIMULADO: no se envía, solo navega al hacer clic en el enlace -->
+      <form novalidate>
+        <!-- Nombre y apellidos -->
+        <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr;">
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="given-name" required>
+          </div>
+          <div>
+            <label for="apellidos">Apellidos</label>
+            <input id="apellidos" name="apellidos" type="text" autocomplete="family-name" required>
+          </div>
+        </div>
+
+        <!-- Email y confirmación -->
+        <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr; margin-top:8px;">
+          <div>
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div>
+            <label for="email2">Confirmación de correo</label>
+            <input id="email2" name="email2" type="email" required>
+          </div>
+        </div>
+
+        <!-- Fecha de nacimiento y login -->
+        <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr; margin-top:8px;">
+          <div>
+            <label for="nacimiento">Fecha de nacimiento</label>
+            <input id="nacimiento" name="nacimiento" type="date" required>
+          </div>
+          <div>
+            <label for="login">Login</label>
+            <input id="login" name="login" type="text" autocomplete="username" required>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div style="margin-top:8px;">
+          <label for="pass">Contraseña</label>
+          <input id="pass" name="pass" type="password" autocomplete="new-password" required>
+        </div>
+
+        <!-- Subir imagen de perfil -->
+        <div style="margin-top:8px;">
+          <label for="foto">Subir imagen de perfil</label>
+          <input id="foto" name="foto" type="file" accept="image/*">
+        </div>
+
+        <!-- Aceptación de privacidad -->
+        <label style="display:flex; gap:8px; align-items:center; margin:14px 0;">
+          <input type="checkbox" required>
+          <span>Acepto la <a href="#" target="_blank" rel="noopener noreferrer">política de privacidad</a></span>
+        </label>
+
+        <!-- ENLACE obligatorio a Versión b (NO botón submit) -->
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="versionb.html">Guardar datos y acceder</a>
+          <a class="btn" href="index.html" aria-label="Cancelar y volver a inicio">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer>
+    <div class="container footer-wrap">
+      <div><strong>&copy; 2025 Mochileras Sin Fronteras</strong></div>
+      <nav><a href="#">Privacidad</a><a href="#">Ayuda</a></nav>
+      <div class="social"><a href="#">📷</a><a href="#">🎵</a><a href="#">▶</a></div>
+    </div>
+  </footer>
+</body>
+</html>

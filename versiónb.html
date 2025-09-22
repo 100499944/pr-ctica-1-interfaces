@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Área de usuaria | Mochileras Sin Fronteras</title>
+  <link rel="stylesheet" href="style/estilos.css"/>
+</head>
+<body>
+  <header>
+    <div class="container wrap">
+      <div class="logo"><img src="images/logo.png" alt=""> Mochileras Sin Fronteras</div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#">Experiencias</a></li>
+          <li><a href="#">Consejos</a></li>
+          <li><a href="#">Foro</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="idioma"><select><option>ES</option><option>EN</option></select></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="contenido">
+      <!-- Izquierda: portada + secciones -->
+      <div class="izquierda">
+        <section class="panel banner">
+          <h1>¡Bienvenida de nuevo, Lucía!</h1>
+          <p>Personaliza tu viaje y guarda tus packs y experiencias favoritas.</p>
+        </section>
+
+        <section class="carrusel" aria-label="Packs recomendados">
+          <div class="arrows"><div class="arrow">‹</div><div class="arrow">›</div></div>
+          <h2>Packs de viaje recomendados</h2>
+          <div class="track">
+            <article class="pack">
+              <img src="images/pack_patagonia.jpg" alt="Parque Nacional Los Glaciares y Torres del Paine">
+              <div class="body"><h3>Patagonia Trek</h3><div class="price">10 días – 950€</div><a class="btn" href="compra.html">Comprar</a></div>
+            </article>
+            <article class="pack">
+              <img src="images/pack_andes.jpg" alt="Cusco, Uyuni y Atacama">
+              <div class="body"><h3>Ruta Andina</h3><div class="price">15 días – 800€</div><a class="btn" href="compra.html">Comprar</a></div>
+            </article>
+            <article class="pack">
+              <img src="images/pack_sudeste.jpg" alt="Bangkok, Chiang Mai, Luang Prabang y Hanoi">
+              <div class="body"><h3>Sudeste Asiático</h3><div class="price">21 días – 1.200€</div><a class="btn" href="compra.html">Comprar</a></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="experiencias">
+          <h2>Experiencias</h2>
+          <div class="grid-exp">
+            <article class="tarjeta"><img src="images/exp_machu_picchu.jpg" alt="Machu Picchu"><div class="info"><h3>Machu Picchu</h3><a class="btn" href="#">Ver más</a></div></article>
+            <article class="tarjeta"><img src="images/exp_ha_giang.jpg" alt="Ha Giang Loop"><div class="info"><h3>Ha Giang Loop</h3><a class="btn" href="#">Ver más</a></div></article>
+            <article class="tarjeta"><img src="images/exp_annapurna.jpg" alt="Annapurna Base Camp"><div class="info"><h3>ABC Trek</h3><a class="btn" href="#">Ver más</a></div></article>
+          </div>
+        </section>
+      </div>
+
+      <!-- Derecha: cambios de Versión b -->
+      <aside class="derecha">
+        <!-- Perfil (sustituye login) -->
+        <div class="widget">
+          <h3>Tu perfil</h3>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <img src="images/perfil_lucia.jpg" alt="Foto de perfil de Lucía" style="width:56px; height:56px; border-radius:50%;">
+            <div><strong>Lucía Martínez</strong><br><small>@lucia_mochilera</small></div>
+          </div>
+          <div style="margin-top:10px;">
+            <a class="btn" href="index.html" aria-label="Cerrar sesión (simulado)">Cerrar sesión</a>
+          </div>
+        </div>
+
+        <!-- Busca experiencias (sustituye Top destinos) -->
+        <div class="widget form">
+          <h3>Busca experiencias</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
+            <label><input type="checkbox"> África</label>
+            <label><input type="checkbox"> América</label>
+            <label><input type="checkbox"> Asia</label>
+            <label><input type="checkbox"> Europa</label>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <input type="text" placeholder="Palabra clave (p.ej. 'trek')">
+            <button class="btn" type="button">🔍 Buscar</button>
+          </div>
+        </div>
+
+        <!-- Últimos consejos + formulario (sustituye Consejos rápidos) -->
+        <div class="widget">
+          <h3>Últimos consejos</h3>
+          <ul class="list">
+            <li><a href="#">Evita comisiones: bancos aliados</a></li>
+            <li><a href="#">Seguro con cobertura de trekking</a></li>
+            <li><a href="#">Apps offline: mapas y traducción</a></li>
+          </ul>
+          <form class="form" style="margin-top:10px;">
+            <h4>¿Tienes algún consejo?</h4>
+            <input type="text" placeholder="Título">
+            <input type="text" placeholder="Descripción breve">
+            <button class="btn" type="button">Enviar</button>
+          </form>
+        </div>
+
+        <!-- Mini-calendario (sustituye Próximos encuentros) -->
+        <div class="widget">
+          <h3>Calendario</h3>
+          <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; text-align:center;">
+            <strong>L</strong><strong>M</strong><strong>X</strong><strong>J</strong><strong>V</strong><strong>S</strong><strong>D</strong>
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+            <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+            <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+            <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+            <span>29</span><span>30</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div><strong>&copy; 2025 Mochileras Sin Fronteras</strong></div>
+      <nav><a href="#">Privacidad</a><a href="#">Ayuda</a></nav>
+      <div class="social"><a href="#">📷</a><a href="#">🎵</a><a href="#">▶</a></div>
+    </div>
+  </footer>
+</body>
+</html>

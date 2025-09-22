@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mochileras Sin Fronteras</title>
+  <link rel="stylesheet" href="style/estilos.css" />
+</head>
+<body>
+
+  <!-- CABECERA -->
+  <header>
+    <div class="container wrap">
+      <!-- Izquierda: nombre del sitio -->
+      <div class="logo">Mochileras Sin Fronteras</div>
+
+      <!-- Centro: menú -->
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Experiencias</a></li>
+          <li><a href="#">Consejos</a></li>
+          <li><a href="#">Foro</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Derecha: logo + combo de idioma -->
+      <div class="idioma">
+        <img src="images/logo.png" alt="Logo Mochileras Sin Fronteras" style="width:28px;height:28px;border-radius:7px;">
+        <select aria-label="Idioma">
+          <option>ES</option>
+          <option>EN</option>
+          <option>FR</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- CUERPO PRINCIPAL -->
+  <main class="container">
+    <section class="contenido" aria-label="Contenido principal">
+      <!-- Columna izquierda -->
+      <div class="izquierda">
+        <!-- Banner -->
+        <section class="panel banner" aria-label="Portada">
+          <!-- Recuerda poner /images/hero.jpg; la imagen de fondo se define en el CSS -->
+          <h1>Explora el mundo con tu mochila</h1>
+          <p>Guías y experiencias reales para viajar por libre: rutas, visados, alojamientos y consejos prácticos.</p>
+        </section>
+
+        <!-- Packs recomendados -->
+        <section class="carrusel" aria-label="Packs de viaje recomendados">
+          <div class="arrows" aria-hidden="true"><div class="arrow">‹</div><div class="arrow">›</div></div>
+          <h2>Packs de viaje recomendados</h2>
+
+          <div class="track">
+            <!-- PACK 1 -->
+            <article class="pack">
+              <img src="images/pack_patagonia.jpg" alt="Trekking en El Chaltén y Torres del Paine">
+              <div class="body">
+                <h3>Patagonia Trek: El Chaltén & Torres del Paine</h3>
+                <div class="price">10 días – 950€</div>
+                <a class="btn" href="compra.html">Comprar</a>
+              </div>
+            </article>
+            <!-- PACK 2 -->
+            <article class="pack">
+              <img src="images/pack_andes.jpg" alt="Cusco, Salar de Uyuni y desierto de Atacama">
+              <div class="body">
+                <h3>Ruta Andina: Cusco – Uyuni – Atacama</h3>
+                <div class="price">15 días – 800€</div>
+                <a class="btn" href="compra.html">Comprar</a>
+              </div>
+            </article>
+            <!-- PACK 3 -->
+            <article class="pack">
+              <img src="images/pack_sudeste.jpg" alt="Bangkok, Chiang Mai, Luang Prabang y Hanoi">
+              <div class="body">
+                <h3>Sudeste Asiático: Tailandia – Laos – Vietnam</h3>
+                <div class="price">21 días – 1.200€</div>
+                <a class="btn" href="compra.html">Comprar</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Experiencias reales -->
+        <section class="experiencias" aria-label="Experiencias">
+          <h2>Experiencias</h2>
+          <div class="grid-exp">
+            <article class="tarjeta">
+              <img src="images/exp_machu_picchu.jpg" alt="Machu Picchu, Perú">
+              <div class="info">
+                <h3>Camino Inca a Machu Picchu (Perú)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="registro.html">Ver más</a>
+                  <a class="like" href="registro.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/exp_ha_giang.jpg" alt="Ha Giang Loop, Vietnam">
+              <div class="info">
+                <h3>Ha Giang Loop en moto (Vietnam)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="registro.html">Ver más</a>
+                  <a class="like" href="registro.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/exp_annapurna.jpg" alt="Annapurna Base Camp, Nepal">
+              <div class="info">
+                <h3>Trek al Campo Base del Annapurna (Nepal)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="registro.html">Ver más</a>
+                  <a class="like" href="registro.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- Barra lateral -->
+      <aside class="derecha" aria-label="Barra lateral">
+        <!-- Login: lleva a Versión b -->
+        <div class="widget login">
+          <h3>Iniciar sesión</h3>
+          <form action="versionb.html" method="get">
+            <input type="text" name="user" placeholder="Usuario" required>
+            <input type="password" name="pass" placeholder="Contraseña" required>
+            <label><input type="checkbox"> Recordar credenciales</label>
+            <button class="btn" type="submit">Iniciar sesión</button>
+          </form>
+        </div>
+
+        <!-- Registro: Versión a -->
+        <a class="btn" href="./registro.html" style="width:100%; text-align:center;">Registro</a>
+
+        <!-- Top destinos reales -->
+        <div class="widget">
+          <h3>Top destinos mochileros</h3>
+          <ul class="list">
+            <li><a href="#">Tailandia <span>Bangkok • Chiang Mai</span></a></li>
+            <li><a href="#">Perú <span>Cusco • Arequipa</span></a></li>
+            <li><a href="#">Marruecos <span>Chefchaouen • Marrakech</span></a></li>
+            <li><a href="#">Nepal <span>Pokhara • Katmandú</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Consejos reales -->
+        <div class="widget">
+          <h3>Consejos rápidos</h3>
+          <ul class="list">
+            <li><a href="#">Seguro médico internacional</a></li>
+            <li><a href="#">Visados y requisitos de entrada</a></li>
+            <li><a href="#">Vacunas: consulta Sanidad Exterior</a></li>
+            <li><a href="#">Tarjeta SIM local o eSIM</a></li>
+          </ul>
+        </div>
+
+        <!-- Próximos encuentros (simulado) -->
+        <div class="widget">
+          <h3>Próximos encuentros</h3>
+          <ul class="list">
+            <li><a href="#">Madrid – 12/10/2025</a></li>
+            <li><a href="#">Buenos Aires – 20/11/2025</a></li>
+            <li><a href="#">Barcelona – 30/09/2025</a></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer>
+    <div class="container footer-wrap">
+      <div>
+        <strong>&copy; 2025 Mochileras Sin Fronteras</strong>
+        <div class="newsletter">
+          <input type="email" placeholder="Tu email" aria-label="Email para newsletter">
+          <button class="btn" type="submit">Suscribirse</button>
+        </div>
+      </div>
+      <nav aria-label="Legal">
+        <a href="#">Sobre nosotras</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Ayuda</a>
+      </nav>
+      <div class="social"><a href="#">📷</a><a href="#">🎵</a><a href="#">▶</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>

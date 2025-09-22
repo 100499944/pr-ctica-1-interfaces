@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compra de pack | Mochileras Sin Fronteras</title>
+  <link rel="stylesheet" href="style/estilos.css"/>
+</head>
+<body>
+  <header>
+    <div class="container wrap">
+      <div class="logo"><img src="images/logo.png" alt=""> Mochileras Sin Fronteras</div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#">Experiencias</a></li>
+          <li><a href="#">Consejos</a></li>
+          <li><a href="#">Foro</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="idioma"><select><option>ES</option><option>EN</option></select></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="contenido" aria-label="Compra de pack">
+      <!-- Izquierda: detalle del pack (real) -->
+      <div class="panel" style="padding:16px;">
+        <img src="images/pack_andes.jpg" alt="Ruta Andina: Cusco, Uyuni y Atacama" style="border-radius:12px; margin-bottom:12px;">
+        <h1>Ruta Andina: Cusco – Uyuni – Atacama</h1>
+        <p>Explora el Valle Sagrado y Machu Picchu (Perú), cruza el Salar de Uyuni (Bolivia) y termina en el desierto de Atacama (Chile). Transporte terrestre, alojamientos recomendados para mochileras y orientación sobre visados.</p>
+        <p class="price" style="font-size:1.2rem;">Precio: 800€</p>
+      </div>
+
+      <!-- Derecha: formulario de compra -->
+      <aside class="panel form" style="padding:16px;">
+        <h2>Finalizar compra</h2>
+        <form>
+          <input type="text" placeholder="Nombre y apellidos" required>
+          <input type="email" placeholder="Correo electrónico" required>
+
+          <label for="tipo">Tipo de tarjeta</label>
+          <select id="tipo" required>
+            <option value="">Selecciona...</option>
+            <option>Visa</option>
+            <option>Mastercard</option>
+            <option>American Express</option>
+          </select>
+
+          <input type="text" inputmode="numeric" placeholder="Número de tarjeta" required>
+          <input type="text" placeholder="Nombre del titular" required>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <input type="month" placeholder="Caducidad" required>
+            <input type="text" inputmode="numeric" placeholder="CVV" required>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <button class="btn" type="submit">Comprar</button>
+            <button class="btn" type="reset">Borrar</button>
+          </div>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div><strong>&copy; 2025 Mochileras Sin Fronteras</strong></div>
+      <nav><a href="#">Privacidad</a><a href="#">Ayuda</a></nav>
+      <div class="social"><a href="#">📷</a><a href="#">🎵</a><a href="#">▶</a></div>
+    </div>
+  </footer>
+</body>
+</html>
