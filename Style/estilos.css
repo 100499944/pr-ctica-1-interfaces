@@ -100,7 +100,7 @@ main{ padding: 18px 0 40px; }
   position: relative; overflow:hidden;
   background:
     linear-gradient(180deg, rgba(106,168,79,.2), rgba(183,132,98,.18)),
-    url("../images/hero.jpg") center/cover no-repeat,           /* usa tu imagen real */
+    url("../images/hero.jpg") center/cover no-repeat,          
     linear-gradient(180deg, #0f1b13, #0f1b13);
   display:flex; flex-direction:column; justify-content:flex-end;
 }
@@ -110,7 +110,7 @@ main{ padding: 18px 0 40px; }
 }
 .banner p{ color: #e6f1df; max-width: 60ch; }
 
-/* ===== Carrusel (no funcional) ===== */
+/* ===== Carrusel ===== */
 .carrusel { margin-top: 22px; }
 .carrusel h2 { margin-bottom: 12px; }
 
@@ -127,8 +127,9 @@ main{ padding: 18px 0 40px; }
   border-radius: 10px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
-  display: grid; place-items: center;
-  cursor: default;          /* no funcional */
+  display: grid; 
+  place-items: center;
+  cursor: default;          
   user-select: none;
 }
 
@@ -170,7 +171,7 @@ main{ padding: 18px 0 40px; }
 /* Responsive */
 @media (max-width: 768px){
   .carrusel-inner{ grid-template-columns: 1fr; }
-  .carrusel .arrow{ display: none; }         /* ocultar flechas en tablet/móvil */
+  .carrusel .arrow{ display: none; }         
   .carrusel .pack{ grid-template-columns: 1fr; }
   .carrusel .pack img{ height: 160px; }
 }
@@ -199,7 +200,7 @@ main{ padding: 18px 0 40px; }
   border-radius:10px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
-  padding:6px;               /* margen interno para que “respire” */
+  padding:6px;               
   transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
 }
 .social-img:hover{
@@ -296,6 +297,3 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
-/* =========================================================
-   Fin estilos.css
-   ========================================================= */
