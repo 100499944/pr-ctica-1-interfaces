@@ -291,3 +291,11 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   .grid-exp{ grid-template-columns: 1fr; }
   .newsletter{ flex-direction: column; align-items: stretch; }
 }
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+/* =========================================================
+   Fin estilos.css
+   ========================================================= */

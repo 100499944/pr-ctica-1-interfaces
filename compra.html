@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compra de pack | Mochileros Sin Fronteras</title>
-  <link rel="stylesheet" href="style/estilos.css"/>
+  <link rel="stylesheet" href="style/estilos.css">
 </head>
 <body>
   <header>
@@ -52,9 +52,20 @@
           <input type="text" placeholder="Nombre del titular" required>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <input type="month" placeholder="Caducidad" required>
-            <input type="text" inputmode="numeric" placeholder="CVV" required>
+            <div>
+              <label for="cad">Caducidad</label>
+              <input id="cad" type="month" required aria-describedby="cad-hint" autocomplete="cc-exp">
+              <small id="cad-hint" style="opacity:.8;">MM/AAAA</small>
+            </div>
+
+            <div>
+              <label for="cvv">CVV</label>
+              <input id="cvv" type="text" inputmode="numeric"
+                    pattern="\d{3,4}" title="3 o 4 dígitos"
+                    required autocomplete="cc-csc">
+            </div>
           </div>
+
 
           <div style="display:flex; gap:10px; margin-top:10px;">
             <button class="btn" type="submit">Comprar</button>
@@ -69,7 +80,7 @@
     <div class="container footer-wrap">
       <div><strong>&copy; 2025 Mochileros Sin Fronteras</strong></div>
       <nav><a href="#">Privacidad</a><a href="#">Ayuda</a></nav>
-      <div class="social" aria-label="Redes sociales">
+      <div class="social" role="group" aria-label="Redes sociales">
         <img class="social-img" src="images/instagram.png" alt="Instagram" width="40" height="40" loading="lazy">
         <img class="social-img" src="images/tiktok.png"    alt="TikTok"    width="40" height="40" loading="lazy">
         <img class="social-img" src="images/youtube.png"   alt="YouTube"   width="40" height="40" loading="lazy">
