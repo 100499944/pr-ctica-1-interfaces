@@ -12,7 +12,7 @@
   <header>
     <div class="container wrap">
       <!-- Izquierda: nombre del sitio -->
-      <div class="logo">Mochileras Sin Fronteras</div>
+      <div class="logo">Mochileros Sin Fronteras</div>
 
       <!-- Centro: menú -->
       <nav aria-label="Principal">
@@ -49,45 +49,38 @@
           <p>Guías y experiencias reales para viajar por libre: rutas, visados, alojamientos y consejos prácticos.</p>
         </section>
 
-        <!-- Packs recomendados -->
-        <section class="carrusel" aria-label="Packs de viaje recomendados">
-          <div class="arrows" aria-hidden="true"><div class="arrow">‹</div><div class="arrow">›</div></div>
+        <!-- Carrusel de packs (no funcional) -->
+        <section class="carrusel panel" aria-label="Packs de viaje recomendados">
           <h2>Packs de viaje recomendados</h2>
 
-          <div class="track">
-            <!-- PACK 1 -->
+          <div class="carrusel-inner">
+            <!-- flecha izquierda (decorativa) -->
+            <button type="button" class="arrow prev" aria-hidden="true">‹</button>
+
+            <!-- ÚNICO pack mostrado -->
             <article class="pack">
-              <img src="images/pack_patagonia.jpg" alt="Trekking en El Chaltén y Torres del Paine">
-              <div class="body">
-                <h3>Patagonia Trek: El Chaltén & Torres del Paine</h3>
-                <div class="price">10 días – 950€</div>
-                <a class="btn" href="compra.html">Comprar</a>
+              <img src="images/pack_andes.jpg"
+                  alt="Pack Ruta Andina: Cusco – Uyuni – Atacama">
+              <div class="pack-info">
+                <h3>Pack Ruta Andina: Cusco – Uyuni – Atacama</h3>
+                <p>Transporte en bus, hostales verificados y guía de visados paso a paso.</p>
+
+                <div class="buy-row">
+                  <span class="precio">1.200€</span>
+                  <a class="btn" href="compra.html">Comprar</a>
+                </div>
               </div>
             </article>
-            <!-- PACK 2 -->
-            <article class="pack">
-              <img src="images/pack_andes.jpg" alt="Cusco, Salar de Uyuni y desierto de Atacama">
-              <div class="body">
-                <h3>Ruta Andina: Cusco – Uyuni – Atacama</h3>
-                <div class="price">15 días – 800€</div>
-                <a class="btn" href="compra.html">Comprar</a>
-              </div>
-            </article>
-            <!-- PACK 3 -->
-            <article class="pack">
-              <img src="images/pack_sudeste.jpg" alt="Bangkok, Chiang Mai, Luang Prabang y Hanoi">
-              <div class="body">
-                <h3>Sudeste Asiático: Tailandia – Laos – Vietnam</h3>
-                <div class="price">21 días – 1.200€</div>
-                <a class="btn" href="compra.html">Comprar</a>
-              </div>
-            </article>
+
+            <!-- flecha derecha (decorativa) -->
+            <button type="button" class="arrow next" aria-hidden="true">›</button>
           </div>
         </section>
 
+
         <!-- Experiencias reales -->
-        <section class="experiencias" aria-label="Experiencias">
-          <h2>Experiencias</h2>
+        <section class="experiencias" aria-label="Experiencias ">
+          <h2>Experiencias Mochileros</h2>
           <div class="grid-exp">
             <article class="tarjeta">
               <img src="images/exp_machu_picchu.jpg" alt="Machu Picchu, Perú">
@@ -181,17 +174,17 @@
     <div class="container footer-wrap">
       <div>
         <strong>&copy; 2025 Mochileras Sin Fronteras</strong>
-        <div class="newsletter">
-          <input type="email" placeholder="Tu email" aria-label="Email para newsletter">
-          <button class="btn" type="submit">Suscribirse</button>
-        </div>
       </div>
       <nav aria-label="Legal">
         <a href="#">Sobre nosotras</a>
         <a href="#">Política de privacidad</a>
         <a href="#">Ayuda</a>
       </nav>
-      <div class="social"><a href="#">📷</a><a href="#">🎵</a><a href="#">▶</a></div>
+      <div class="social" aria-label="Redes sociales">
+        <img class="social-img" src="images/instagram.png" alt="Instagram" width="40" height="40" loading="lazy">
+        <img class="social-img" src="images/tiktok.png"    alt="TikTok"    width="40" height="40" loading="lazy">
+        <img class="social-img" src="images/youtube.png"   alt="YouTube"   width="40" height="40" loading="lazy">
+      </div>
     </div>
   </footer>
 

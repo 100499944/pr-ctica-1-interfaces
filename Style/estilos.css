@@ -110,44 +110,73 @@ main{ padding: 18px 0 40px; }
 }
 .banner p{ color: #e6f1df; max-width: 60ch; }
 
-/* ---------- Carrusel (no funcional) ---------- */
-.carrusel{ margin-top: 20px; }
-.carrusel h2{ margin-bottom: 10px; }
-.carrusel .arrows{
-  display:flex; justify-content:flex-end; gap:8px; margin-bottom:8px;
-}
-.arrow{
-  width:36px; height:36px; border-radius:10px;
-  background: rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  display:grid; place-items:center; cursor:pointer;
-}
-.arrow:hover{ background: rgba(255,255,255,.12); }
+/* ===== Carrusel (no funcional) ===== */
+.carrusel { margin-top: 22px; }
+.carrusel h2 { margin-bottom: 12px; }
 
-.carrusel .track{
-  display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
+.carrusel-inner{
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px; /* flecha - pack - flecha */
+  align-items: center;
+  gap: 10px;
 }
-.pack{
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 12px; overflow:hidden;
-  display:flex; flex-direction:column;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.pack:hover{ transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.35);}
-.pack img{ aspect-ratio: 16/10; object-fit: cover; }
-.pack .body{ padding: 14px 14px 16px; display:flex; gap:8px; flex-direction:column; }
-.price{ color: var(--accent); font-weight:800; }
 
-/* Botón principal estilo tierra/verde */
-.btn{
-  display:inline-block; text-align:center; padding:10px 14px; border-radius:10px;
-  background: linear-gradient(90deg, var(--brand), var(--brand-2));
-  color:#0f130e; font-weight:800; letter-spacing:.2px;
-  border: none; cursor: pointer;
-  transition: filter .15s ease, transform .15s ease;
+.carrusel .arrow{
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: grid; place-items: center;
+  cursor: default;          /* no funcional */
+  user-select: none;
 }
-.btn:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+
+.carrusel .arrow:hover{ background: rgba(255,255,255,0.12); }
+
+.carrusel .pack{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.carrusel .pack img{
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.carrusel .pack-info{ padding: 14px; }
+.carrusel .pack-info h3{ margin: 0 0 6px 0; }
+
+.carrusel .buy-row{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.carrusel .precio{
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .carrusel-inner{ grid-template-columns: 1fr; }
+  .carrusel .arrow{ display: none; }         /* ocultar flechas en tablet/móvil */
+  .carrusel .pack{ grid-template-columns: 1fr; }
+  .carrusel .pack img{ height: 160px; }
+}
+@media (max-width: 600px){
+  .carrusel .pack img{ height: 140px; }
+}
 
 /* ---------- Galería de experiencias ---------- */
 .experiencias{ margin-top: 22px; }
@@ -162,6 +191,22 @@ main{ padding: 18px 0 40px; }
 .tarjeta:hover{ transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.35); }
 .tarjeta img{ aspect-ratio: 4/3; object-fit: cover; }
 .tarjeta .info{ padding: 12px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+
+/* Iconos de redes  */
+.social{ display:flex; gap:10px; align-items:center; }
+.social-img{
+  width:40px; height:40px; object-fit:contain;
+  border-radius:10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  padding:6px;               /* margen interno para que “respire” */
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+.social-img:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+}
 
 /* ---------- Barra lateral ---------- */
 aside.derecha{ display:flex; flex-direction:column; gap:16px; }
