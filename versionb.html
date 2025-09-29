@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Área de usuaria | Mochileras Sin Fronteras</title>
+  <title>Área de usuaria | Mochileros Sin Fronteras</title>
   <link rel="stylesheet" href="style/estilos.css"/>
 </head>
 <body>
   <header>
     <div class="container wrap">
-      <div class="logo"><img src="images/logo.png" alt=""> Mochileras Sin Fronteras</div>
+      <div class="logo"><img src="images/logo.png" alt=""> Mochileros Sin Fronteras</div>
       <nav aria-label="Principal">
         <ul>
           <li><a href="index.html">Inicio</a></li>
@@ -25,42 +25,112 @@
 
   <main class="container">
     <section class="contenido">
-      <!-- Izquierda: portada + secciones -->
+      <!-- Columna izquierda (versión b: sesión iniciada) -->
       <div class="izquierda">
-        <section class="panel banner">
+        <!-- Banner -->
+        <section class="panel banner" aria-label="Portada">
           <h1>¡Bienvenida de nuevo, Lucía!</h1>
-          <p>Personaliza tu viaje y guarda tus packs y experiencias favoritas.</p>
+          <p>Sigue explorando nuevas rutas, guardando favoritos y compartiendo tus consejos con la comunidad.</p>
         </section>
 
-        <section class="carrusel" aria-label="Packs recomendados">
-          <div class="arrows"><div class="arrow">‹</div><div class="arrow">›</div></div>
+        <!-- Carrusel de packs (no funcional) -->
+        <section class="carrusel panel" aria-label="Packs de viaje recomendados">
           <h2>Packs de viaje recomendados</h2>
-          <div class="track">
+
+          <div class="carrusel-inner">
+            <button type="button" class="arrow prev" aria-hidden="true">‹</button>
+
             <article class="pack">
-              <img src="images/pack_patagonia.jpg" alt="Parque Nacional Los Glaciares y Torres del Paine">
-              <div class="body"><h3>Patagonia Trek</h3><div class="price">10 días – 950€</div><a class="btn" href="compra.html">Comprar</a></div>
+              <img src="images/pack_andes.jpg"
+                  alt="Pack Ruta Andina: Cusco – Uyuni – Atacama">
+              <div class="pack-info">
+                <h3>Pack Ruta Andina: Cusco – Uyuni – Atacama</h3>
+                <p>Transporte en bus, hostales verificados y guía de visados paso a paso.</p>
+
+                <div class="buy-row">
+                  <span class="precio">1.200€</span>
+                  <a class="btn" href="compra.html">Comprar</a>
+                </div>
+              </div>
             </article>
-            <article class="pack">
-              <img src="images/pack_andes.jpg" alt="Cusco, Uyuni y Atacama">
-              <div class="body"><h3>Ruta Andina</h3><div class="price">15 días – 800€</div><a class="btn" href="compra.html">Comprar</a></div>
-            </article>
-            <article class="pack">
-              <img src="images/pack_sudeste.jpg" alt="Bangkok, Chiang Mai, Luang Prabang y Hanoi">
-              <div class="body"><h3>Sudeste Asiático</h3><div class="price">21 días – 1.200€</div><a class="btn" href="compra.html">Comprar</a></div>
-            </article>
+
+            <button type="button" class="arrow next" aria-hidden="true">›</button>
           </div>
         </section>
 
-        <section class="experiencias">
-          <h2>Experiencias</h2>
+        <!-- Experiencias reales -->
+        <section class="experiencias" aria-label="Experiencias">
+          <h2>Experiencias Mochileros</h2>
           <div class="grid-exp">
-            <article class="tarjeta"><img src="images/exp_machu_picchu.jpg" alt="Machu Picchu"><div class="info"><h3>Machu Picchu</h3><a class="btn" href="#">Ver más</a></div></article>
-            <article class="tarjeta"><img src="images/exp_ha_giang.jpg" alt="Ha Giang Loop"><div class="info"><h3>Ha Giang Loop</h3><a class="btn" href="#">Ver más</a></div></article>
-            <article class="tarjeta"><img src="images/exp_annapurna.jpg" alt="Annapurna Base Camp"><div class="info"><h3>ABC Trek</h3><a class="btn" href="#">Ver más</a></div></article>
+            <article class="tarjeta">
+              <img src="images/exp_machu_picchu.jpg" alt="Machu Picchu, Perú">
+              <div class="info">
+                <h3>Camino Inca a Machu Picchu (Perú)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="versionb.html">Ver más</a>
+                  <a class="like" href="versionb.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/exp_ha_giang.jpg" alt="Ha Giang Loop, Vietnam">
+              <div class="info">
+                <h3>Ha Giang Loop en moto (Vietnam)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="versionb.html">Ver más</a>
+                  <a class="like" href="versionb.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/exp_annapurna.jpg" alt="Annapurna Base Camp, Nepal">
+              <div class="info">
+                <h3>Trek al Campo Base del Annapurna (Nepal)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="versionb.html">Ver más</a>
+                  <a class="like" href="versionb.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/paris.jpg" alt="Paris, Francia">
+              <div class="info">
+                <h3>Paris con mochila (Francia)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="versionb.html">Ver más</a>
+                  <a class="like" href="versionb.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/camino_santiago.jpg" alt="Camino Santiago, España">
+              <div class="info">
+                <h3>Camino de Santiago (España)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="versionb.html">Ver más</a>
+                  <a class="like" href="versionb.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <img src="images/tanzania.jpg" alt="Parque Nacional del Serengeti, Tanzania">
+              <div class="info">
+                <h3>Safari en Serengeti y Ngorongoro (Tanzania)</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <a class="btn" href="versionb.html">Ver más</a>
+                  <a class="like" href="versionb.html" aria-label="Me gusta">❤️</a>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
       </div>
-
+      
       <!-- Derecha: cambios de Versión b -->
       <aside class="derecha">
         <!-- Perfil (sustituye login) -->
@@ -124,9 +194,13 @@
 
   <footer>
     <div class="container footer-wrap">
-      <div><strong>&copy; 2025 Mochileras Sin Fronteras</strong></div>
+      <div><strong>&copy; 2025 Mochileros Sin Fronteras</strong></div>
       <nav><a href="#">Privacidad</a><a href="#">Ayuda</a></nav>
-      <div class="social"><a href="#">📷</a><a href="#">🎵</a><a href="#">▶</a></div>
+      <div class="social" aria-label="Redes sociales">
+        <img class="social-img" src="images/instagram.png" alt="Instagram" width="40" height="40" loading="lazy">
+        <img class="social-img" src="images/tiktok.png"    alt="TikTok"    width="40" height="40" loading="lazy">
+        <img class="social-img" src="images/youtube.png"   alt="YouTube"   width="40" height="40" loading="lazy">
+      </div>
     </div>
   </footer>
 </body>
