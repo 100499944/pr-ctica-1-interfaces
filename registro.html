@@ -41,10 +41,12 @@
         <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr;">
           <div>
             <label for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" type="text" autocomplete="given-name" required>
+            <!-- CAMBIO: minlength para reforzar la validación -->
+            <input id="nombre" name="nombre" type="text" autocomplete="given-name" required minlength="3"><!-- CAMBIO -->
           </div>
           <div>
             <label for="apellidos">Apellidos</label>
+            <!-- (Los 2 apellidos de ≥3 letras los validaremos en JS) -->
             <input id="apellidos" name="apellidos" type="text" autocomplete="family-name" required>
           </div>
         </div>
@@ -65,35 +67,43 @@
         <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr; margin-top:8px;">
           <div>
             <label for="nacimiento">Fecha de nacimiento</label>
-            <input id="nacimiento" name="nacimiento" type="date" required>
+            <!-- CAMBIO: rango mínimo razonable; el máximo lo controlamos en JS para que sea siempre “hoy” -->
+            <input id="nacimiento" name="nacimiento" type="date" required min="1900-01-01"><!-- CAMBIO -->
           </div>
           <div>
             <label for="login">Login</label>
-            <input id="login" name="login" type="text" autocomplete="username" required>
+            <!-- CAMBIO: minlength=5 -->
+            <input id="login" name="login" type="text" autocomplete="username" required minlength="5"><!-- CAMBIO -->
           </div>
         </div>
 
         <!-- Password -->
         <div style="margin-top:8px;">
           <label for="pass">Contraseña</label>
-          <input id="pass" name="pass" type="password" autocomplete="new-password" required>
+          <!-- CAMBIO: patrón y título explicativo (coincide con el enunciado) -->
+          <input id="pass" name="pass" type="password" autocomplete="new-password" required
+                 pattern="^(?=(?:.*\d){2,})(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?])(?=.*[A-Z])(?=.*[a-z]).{8,}$"  <!-- CAMBIO -->
+                 Mín. 8 caracteres, con al menos 2 números, 1 carácter especial, 1 mayúscula y 1 minúscula<!-- CAMBIO -->
         </div>
 
         <!-- Subir imagen de perfil -->
         <div style="margin-top:8px;">
           <label for="foto">Subir imagen de perfil</label>
-          <input id="foto" name="foto" type="file" accept="image/*">
+          <!-- CAMBIO: restringimos explícitamente a webp/png/jpg -->
+          <input id="foto" name="foto" type="file" accept=".webp,.png,.jpg,.jpeg" required><!-- CAMBIO -->
         </div>
 
         <!-- Aceptación de privacidad -->
+        <!-- CAMBIO: añadimos id para poder habilitar/deshabilitar el botón -->
         <label style="display:flex; gap:8px; align-items:center; margin:14px 0;">
-          <input type="checkbox" required>
+          <input id="chkPriv" type="checkbox" required> <!-- CAMBIO -->
           <span>Acepto la <a href="#" target="_blank" rel="noopener noreferrer">política de privacidad</a></span>
         </label>
 
-        <!-- ENLACE obligatorio a Versión b (NO botón submit) -->
+        <!-- Guardar / Cancelar -->
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="versionb.html">Guardar datos y acceder</a>
+          <!-- CAMBIO: sustituimos el enlace por un botón deshabilitado que habilita el checkbox -->
+          <button id="btnGuardar" class="btn" type="button" disabled>Guardar datos y acceder</button><!-- CAMBIO -->
           <a class="btn" href="index.html" aria-label="Cancelar y volver a inicio">Cancelar</a>
         </div>
       </form>
@@ -113,8 +123,7 @@
     </div>
   </footer>
 
-<!-- ENLAZAMOS CON JS-->
-<script src="script/app.js" defer></script>
-
+  <!-- ENLAZAMOS CON JS-->
+  <script src="script/app.js" defer></script>
 </body>
 </html>
