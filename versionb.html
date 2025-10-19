@@ -30,7 +30,7 @@
       <div class="izquierda">
         <!-- Banner -->
         <section class="panel banner" aria-label="Portada">
-          <h2>¡Bienvenida de nuevo, Lucía!</h2>
+          <h2>¡Bienvenid@ de nuevo, <span id="bannerName"></span>!</h2>
           <p>Sigue explorando nuevas rutas, guardando favoritos y compartiendo tus consejos con la comunidad.</p>
         </section>
 
@@ -138,11 +138,14 @@
         <div class="widget">
           <h3>Tu perfil</h3>
           <div style="display:flex; align-items:center; gap:12px;">
-            <img src="images/perfil_lucia.jpg" alt="Foto de perfil de Lucía" style="width:56px; height:56px; border-radius:50%;">
-            <div><strong>Lucía Martínez</strong><br><small>@lucia_mochilera</small></div>
+            <img id="profAvatar" src="images/perfil_default.jpg" alt="Foto de perfil" style="width:56px; height:56px; border-radius:50%;">
+            <div>
+              <strong id="profName">Usuario</strong><br>
+              <small id="profUser">@usuario</small>
+            </div>
           </div>
           <div style="margin-top:10px;">
-            <a class="btn" href="index.html" aria-label="Cerrar sesión (simulado)">Cerrar sesión</a>
+            <button id="btnLogout" class="btn" type="button">Cerrar sesión</button>
           </div>
         </div>
 
@@ -164,16 +167,14 @@
         <!-- Últimos consejos + formulario -->
         <div class="widget">
           <h3>Últimos consejos</h3>
-          <ul class="list">
-            <li><a href="#">Evita comisiones: bancos aliados</a></li>
-            <li><a href="#">Seguro con cobertura de trekking</a></li>
-            <li><a href="#">Apps offline: mapas y traducción</a></li>
+          <ul id="tipsList" class="list">
+            <!-- se rellenará con JS -->
           </ul>
-          <form class="form" style="margin-top:10px;">
+          <form id="tipsForm" class="form" style="margin-top:10px;" novalidate>
             <h4>¿Tienes algún consejo?</h4>
-            <input type="text" placeholder="Título">
-            <input type="text" placeholder="Descripción breve">
-            <button class="btn" type="button">Enviar</button>
+            <input id="tipTitle" type="text" placeholder="Título (mín. 15 caracteres)">
+            <input id="tipDesc"  type="text" placeholder="Descripción (mín. 30 caracteres)">
+            <button id="btnTip" class="btn" type="button">Enviar</button>
           </form>
         </div>
 
@@ -204,5 +205,18 @@
       </div>
     </div>
   </footer>
+  <div id="logoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.35); align-items:center; justify-content:center; z-index:9999;">
+    <div style="background:#fff; padding:16px 18px; border-radius:12px; width:min(90vw,380px); box-shadow:0 10px 30px rgba(0,0,0,.2)">
+      <h3 style="margin:0 0 8px 0;">¿Desea cerrar sesión?</h3>
+      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px;">
+        <button id="cancelLogout" class="btn btn-sec" type="button">Cancelar</button>
+        <button id="confirmLogout" class="btn" type="button">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENLAZAMOS CON JS-->
+  <script src="script/app.js" defer></script>     
+
 </body>
 </html>

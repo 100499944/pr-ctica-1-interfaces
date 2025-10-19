@@ -25,13 +25,13 @@
 
   <main class="container">
     <section class="contenido" aria-label="Compra de pack">
-      <!-- Izquierda: detalle del pack (real) -->
-      <div class="panel" style="padding:16px;">
-        <img src="images/pack_andes.jpg" alt="Ruta Andina: Cusco, Uyuni y Atacama" style="border-radius:12px; margin-bottom:12px;">
-        <h1>Ruta Andina: Cusco – Uyuni – Atacama</h1>
-        <p>Ruta clásica por la cordillera andina: Cusco y Valle Sagrado, tour de 3 días por el Salar de Uyuni y lagunas altiplánicas, y San Pedro de Atacama con Valle de la Luna y géiseres del Tatio. Incluye traslados, alojamientos seleccionados y guía de visados/pasos fronterizos Perú–Bolivia–Chile.</p>
-        <p class="price" style="font-size:1.2rem;">Precio: 1200€</p>
-      </div>
+      <!-- Izquierda: detalle del pack (dinámico) -->
+      <div class="panel pack-resumen" style="padding:16px;">
+        <img id="packImg" src="images/pack_andes.jpg" alt="">
+        <h1 id="packTitle">Ruta Andina: Cusco – Uyuni – Atacama</h1>
+        <p id="packDesc">…</p>
+        <p class="price" id="packPrice" style="font-size:1.2rem;">Precio: 1.200€</p>
+      </div>  
 
       <!-- Derecha: formulario de compra -->
       <aside class="panel form" style="padding:16px;">

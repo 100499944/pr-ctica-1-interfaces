@@ -96,6 +96,82 @@
     });
   });
 
+  // === Carrusel (Home y Versión b): 3+ packs, flechas cíclicas, auto cada 2s ===
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.carrusel .carrusel-inner').forEach(inner => {
+            const packs = Array.from(inner.querySelectorAll('.pack'));
+            if (packs.length < 3) return; // el enunciado pide mínimo 3
+            const prevBtn = inner.querySelector('.arrow.prev');
+            const nextBtn = inner.querySelector('.arrow.next');
+
+            let i = 0;
+            function show(idx) {
+                packs.forEach((p, k) => { p.style.display = (k === idx) ? '' : 'none'; });
+                i = idx;
+            }
+            function next() { show((i + 1) % packs.length); }
+            function prev() { show((i - 1 + packs.length) % packs.length); }
+
+            // arranque
+            show(0);
+
+            // botones
+            nextBtn?.addEventListener('click', () => { next(); restart(); });
+            prevBtn?.addEventListener('click', () => { prev(); restart(); });
+
+            // auto-rotación cada 2s
+            let timer = setInterval(next, 2000);
+            const restart = () => { clearInterval(timer); timer = setInterval(next, 2000); };
+
+            // (opcional) pausar al pasar el ratón
+            inner.addEventListener('mouseenter', () => clearInterval(timer));
+            inner.addEventListener('mouseleave', () => restart());
+        });
+    });
+
+    // === Compra: pinta el pack seleccionado (?pack=andes|paris|tanzania) ===
+    document.addEventListener('DOMContentLoaded', () => {
+        const onCompra = /compra\.html/i.test(location.pathname) || /compra\.html/i.test(location.href);
+        if (!onCompra) return;
+
+        const params = new URLSearchParams(location.search);
+        const code = (params.get('pack') || 'andes').toLowerCase();
+
+        const PACKS = {
+            andes: {
+                img: 'images/pack_andes.jpg',
+                title: 'Ruta Andina: Cusco – Uyuni – Atacama',
+                desc: 'Ruta clásica por la cordillera andina: Cusco y Valle Sagrado, tour de 3 días por el Salar de Uyuni y lagunas altiplánicas, y San Pedro de Atacama con Valle de la Luna y géiseres del Tatio. Incluye traslados, alojamientos seleccionados y guía de visados/pasos fronterizos Perú–Bolivia–Chile.',
+                price: '1.200€'
+            },
+            paris: {
+                img: 'images/paris.jpg',
+                title: 'París con mochila',
+                desc: 'Escapada urbana pensada para mochileros: 4 noches en hostel céntrico cercano al metro, pase de transporte ilimitado y ruta autoguiada por los imprescindibles (Île de la Cité, Louvre exterior, Trocadéro y Torre Eiffel, Montmartre y barrios con buen ambiente nocturno). Consejos para comer barato y horarios óptimos.',
+                price: '680€'
+            },
+            tanzania: {
+                img: 'images/tanzania.jpg',
+                title: 'Safari Serengeti y Ngorongoro',
+                desc: 'Aventura en 4x4 compartido con conductor y guía locales: jornadas de safari en Parque Nacional Serengeti y cráter de Ngorongoro, con acampada en zonas habilitadas, pensión completa y tasas de entrada incluidas. Mejor época recomendada y checklist de equipo ligero para acampada.',
+                price: '2.150€'
+            }
+        };
+
+        const data = PACKS[code] || PACKS.andes;
+
+        const $img   = document.getElementById('packImg');
+        const $title = document.getElementById('packTitle');
+        const $desc  = document.getElementById('packDesc');
+        const $price = document.getElementById('packPrice');
+
+        if ($img)   { $img.src = data.img; $img.alt = data.title; }
+        if ($title) $title.textContent = data.title;
+        if ($desc)  $desc.textContent  = data.desc;
+        if ($price) $price.textContent = `Precio: ${data.price}`;
+    });
+
+
   // ------------------ REGISTRO: validaciones + guardar ------------------
   document.addEventListener('DOMContentLoaded', () => {
     // Form de registro tal y como lo pegaste (IDs ya presentes)
@@ -350,4 +426,131 @@
     });
     });
 
+    // === Versión b (área de usuaria) ===
+    document.addEventListener('DOMContentLoaded', () => {
+    // ¿Estamos en versionb?
+    const isVersionB = /(^|\/)versionb\.html(\?|#|$)/i.test(location.pathname) || /versionb\.html/i.test(location.href);
+    if (!isVersionB) return;
+
+    // ---- Acceso: requiere sesión ----
+    const sessionUser = localStorage.getItem('sessionUser');
+    if (!sessionUser) {
+        // sin sesión: fuera a Home
+        location.replace('index.html?needLogin=1');
+        return;
+    }
+
+    // ---- Cargar datos de usuario para perfil ----
+    const users = (() => { try { return JSON.parse(localStorage.getItem('users')) || {}; } catch { return {}; } })();
+    const u = users[sessionUser] || {};
+    const profName = document.getElementById('profName');
+    const profUser = document.getElementById('profUser');
+    const profAvatar = document.getElementById('profAvatar');
+
+    if (profName) profName.textContent = [u.nombre, u.apellidos].filter(Boolean).join(' ') || sessionUser;
+    if (profUser) profUser.textContent = '@' + sessionUser;
+    if (profAvatar && u.avatar) profAvatar.src = u.avatar; // DataURL guardada en registro
+    
+    const bannerName = document.getElementById('bannerName');
+    if (bannerName) bannerName.textContent = (u.nombre && u.nombre.trim()) ? u.nombre : sessionUser;
+
+    // ---- Cerrar sesión (modal confirmar/cancelar) ----
+    const btnLogout = document.getElementById('btnLogout');
+    const modal = document.getElementById('logoutModal');
+    const btnCancel = document.getElementById('cancelLogout');
+    const btnConfirm = document.getElementById('confirmLogout');
+
+    const showModal = () => { modal.style.display = 'flex'; };
+    const hideModal = () => { modal.style.display = 'none'; };
+
+    btnLogout?.addEventListener('click', showModal);
+    btnCancel?.addEventListener('click', hideModal);
+    modal?.addEventListener('click', (e) => { if (e.target === modal) hideModal(); }); // cerrar al clicar fuera
+    btnConfirm?.addEventListener('click', () => {
+        localStorage.removeItem('sessionUser');
+        // (opcional) también podrías limpiar más cosas si hace falta
+        location.href = 'index.html';
+    });
+
+    // ---- Últimos consejos (persistentes) ----
+    // Estructura localStorage['tips'] = [{id, title, desc, url, ts}, ...]
+    function getTips() {
+        try { return JSON.parse(localStorage.getItem('tips')) || []; }
+        catch { return []; }
+    }
+    function setTips(arr) {
+    localStorage.setItem('tips', JSON.stringify(arr || []));
+    }
+
+    // Render: siempre los 3 más recientes (ordenados por ts desc)
+    function renderTips() {
+        const list = document.getElementById('tipsList');
+        if (!list) return;
+        const tips = getTips().slice().sort((a, b) => b.ts - a.ts);
+        list.innerHTML = '';
+        tips.slice(0, 3).forEach(t => {
+            const li = document.createElement('li');
+            const a  = document.createElement('a');
+            a.href = t.url || '#';
+            a.textContent = t.title;
+            li.appendChild(a);
+            list.appendChild(li);
+        });
+    }
+
+    // Pintar al entrar
+    renderTips();
+
+    // ---- Formulario para añadir consejos ----
+    const form = document.getElementById('tipsForm');
+    const tipTitle = document.getElementById('tipTitle');
+    const tipDesc  = document.getElementById('tipDesc');
+    const btnTip   = document.getElementById('btnTip');
+
+    function showInlineError(input, msg) {
+        let holder = input.parentElement.querySelector('.msg-error');
+        if (!holder) {
+            holder = document.createElement('div');
+            holder.className = 'msg-error';
+            input.parentElement.appendChild(holder);
+        }
+        holder.textContent = msg;
+        holder.style.display = 'block';
+        input.classList.add('invalid');
+    }
+    function clearInlineError(input) {
+        input.classList.remove('invalid');
+        const el = input.parentElement.querySelector('.msg-error');
+        if (el) { el.textContent = ''; el.style.display = 'none'; }
+    }
+
+    btnTip?.addEventListener('click', () => {
+        if (!form) return;
+
+        clearInlineError(tipTitle);
+        clearInlineError(tipDesc);
+
+        const title = (tipTitle.value || '').trim();
+        const desc  = (tipDesc.value  || '').trim();
+
+        let ok = true;
+        if (title.length < 15) { showInlineError(tipTitle, 'El título debe tener al menos 15 caracteres.'); ok = false; }
+        if (desc.length  < 30) { showInlineError(tipDesc,  'La descripción debe tener al menos 30 caracteres.'); ok = false; }
+        if (!ok) return;
+
+        const tips = getTips();
+        const now  = Date.now();
+        tips.unshift({
+            id:  now,
+            title,
+            desc,
+            url: `consejo.html?id=${now}`, // página “no real” (válido por enunciado)
+            ts:  now
+        });
+        setTips(tips);
+
+        renderTips();   // repinta top-3
+        form.reset();   // limpia campos
+    });
+    });
 })();

@@ -76,16 +76,30 @@ main{padding:16px 0}
 /* Carrusel */
 .carrusel{margin-top:10px}
 .carrusel h2{margin-bottom:6px}
-.arrows{display:flex;gap:6px;margin-bottom:6px}
-.arrow{
-  width:26px;height:26px;border:1px solid var(--border);
-  display:grid;place-items:center;border-radius:var(--radius)
-}
 
+/* Las flechas van sobre el carrusel, no arriba/abajo */
+.carrusel .carrusel-inner{position:relative}        /* referencia para posicionar */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:26px;height:26px;
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  border-radius:var(--radius);
+  background:#fff;                                  /* mismo estilo, sin “pijadas” */
+}
+.arrow.prev{left:8px}
+.arrow.next{right:8px}
+
+/* Tarjeta */
 .pack{border:1px solid var(--border);background:#fff;border-radius:var(--radius);overflow:hidden}
 .pack img{height:140px;object-fit:cover;width:100%}
 .pack .body{padding:8px}
 .price{font-weight:bold;margin:6px 0}
+.rating{
+  display:flex;align-items:center;gap:4px;font-size:14px;color:#f5a623
+}
 
 /* Experiencias */
 .experiencias{margin-top:12px}
@@ -176,6 +190,15 @@ input:invalid{border-color:#d33}
   color: #000;    
 }
 
+/* Compra – resumen del pack: forzar imagen uniforme */
+.pack-resumen img{
+  width: 100%;
+  height: 260px;       
+  object-fit: cover;    
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 12px;
+}
 
 
 

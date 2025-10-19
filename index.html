@@ -49,34 +49,55 @@
           <p>Guías y experiencias reales para viajar por libre: rutas, visados, alojamientos y consejos prácticos.</p>
         </section>
 
-        <!-- Carrusel de packs (no funcional) -->
+        <!-- Carrusel de packs -->
         <section class="carrusel panel" aria-label="Packs de viaje recomendados">
           <h2>Packs de viaje recomendados</h2>
 
           <div class="carrusel-inner">
-            <!-- flecha izquierda (decorativa) -->
-            <button type="button" class="arrow prev" aria-hidden="true">‹</button>
+            <button type="button" class="arrow prev" aria-label="Anterior">‹</button>
 
-            <!-- ÚNICO pack mostrado -->
-            <article class="pack">
-              <img src="images/pack_andes.jpg"
-                  alt="Pack Ruta Andina: Cusco – Uyuni – Atacama">
+            <!-- Pack 1 -->
+            <article class="pack" data-pack="andes">
+              <img src="images/pack_andes.jpg" alt="Pack Ruta Andina: Cusco – Uyuni – Atacama">
               <div class="pack-info">
                 <h3>Pack Ruta Andina: Cusco – Uyuni – Atacama</h3>
                 <p>Transporte en bus, hostales verificados y guía de visados paso a paso.</p>
-
                 <div class="buy-row">
                   <span class="precio">1.200€</span>
-                  <a class="btn" href="registro.html">Comprar</a>
+                  <a class="btn" href="compra.html?pack=andes">Comprar</a>
                 </div>
               </div>
             </article>
 
-            <!-- flecha derecha (decorativa) -->
-            <button type="button" class="arrow next" aria-hidden="true">›</button>
+            <!-- Pack 2 -->
+            <article class="pack" data-pack="paris">
+              <img src="images/paris.jpg" alt="Pack París con mochila">
+              <div class="pack-info">
+                <h3>Pack París con mochila</h3>
+                <p>4 noches en hostel céntrico, pase de metro y ruta de imprescindibles.</p>
+                <div class="buy-row">
+                  <span class="precio">680€</span>
+                  <a class="btn" href="compra.html?pack=paris">Comprar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Pack 3 -->
+            <article class="pack" data-pack="tanzania">
+              <img src="images/tanzania.jpg" alt="Pack Safari Serengeti y Ngorongoro">
+              <div class="pack-info">
+                <h3>Pack Safari Serengeti y Ngorongoro</h3>
+                <p>Safaris en 4x4 compartido y acampada en parques nacionales.</p>
+                <div class="buy-row">
+                  <span class="precio">2.150€</span>
+                  <a class="btn" href="compra.html?pack=tanzania">Comprar</a>
+                </div>
+              </div>
+            </article>
+
+            <button type="button" class="arrow next" aria-label="Siguiente">›</button>
           </div>
         </section>
-
 
         <!-- Experiencias reales -->
         <section class="experiencias" aria-label="Experiencias ">
