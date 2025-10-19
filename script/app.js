@@ -15,6 +15,9 @@
   function setSessionUser(login) {
     localStorage.setItem('sessionUser', String(login));
   }
+  function isLoggedIn() {
+  return !!localStorage.getItem('sessionUser');
+  }
   function readFileAsDataURL(file) {
     return new Promise((res, rej) => {
       if (!file) return res(null);
@@ -226,4 +229,125 @@
     $pass?.addEventListener('blur', () => validarPass($pass.value) ? limpiarInvalido($pass) : marcarInvalido($pass, '8+, 2 números, 1 especial, 1 mayús, 1 minús.'));
     $foto?.addEventListener('change', () => validarArchivo($foto.files?.[0]) ? limpiarInvalido($foto) : marcarInvalido($foto, 'Imagen .webp, .png o .jpg.'));
   });
+
+    // === COMPRA (versión c) — mensajes inline + éxito + borrar limpio ===
+    document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('formCompra');
+    if (!form) return;
+
+    const $fullName   = form.querySelector('#fullName');
+    const $email      = form.querySelector('#emailCompra');
+    const $cardType   = form.querySelector('#cardType');
+    const $cardNumber = form.querySelector('#cardNumber');
+    const $cardHolder = form.querySelector('#cardHolder');
+    const $expMonth   = form.querySelector('#expMonth');
+    const $cvv        = form.querySelector('#cvv');
+    const $btnComprar = form.querySelector('#btnComprar');
+    const $btnBorrar  = form.querySelector('#btnBorrar');
+
+    const reEmail      = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const reCardNumber = /^(?:\d{13}|\d{15}|\d{16}|\d{19})$/;
+    const reCVV        = /^\d{3}$/;
+
+    // Inserta/recupera contenedor de error bajo el campo
+    function msgEl(input) {
+        let holder = input.parentElement.querySelector('.msg-error');
+        if (!holder) {
+        holder = document.createElement('div');
+        holder.className = 'msg-error';
+        input.parentElement.appendChild(holder);
+        }
+        return holder;
+    }
+    function showError(input, text) {
+        input.classList.add('invalid');
+        const el = msgEl(input);
+        el.textContent = text;
+        el.style.display = 'block';
+    }
+    function clearError(input) {
+        input.classList.remove('invalid');
+        const el = input.parentElement.querySelector('.msg-error');
+        if (el) { el.textContent = ''; el.style.display = 'none'; }
+    }
+    function clearAllErrors() {
+        [$fullName,$email,$cardType,$cardNumber,$cardHolder,$expMonth,$cvv].forEach(clearError);
+    }
+
+    // Min dinámico para caducidad = mes actual (YYYY-MM)
+    (function setMinExp() {
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        $expMonth.min = `${y}-${m}`;
+    })();
+
+    // Normaliza número (sin espacios)
+    $cardNumber.addEventListener('input', () => {
+        $cardNumber.value = $cardNumber.value.replace(/\s+/g, '');
+    });
+
+    // Validación completa al pulsar Comprar
+    $btnComprar.addEventListener('click', () => {
+        clearAllErrors();
+        let ok = true;
+
+        if ($fullName.value.trim().length < 3) {
+        showError($fullName, 'El nombre completo debe tener al menos 3 caracteres.');
+        ok = false;
+        }
+        if (!reEmail.test($email.value.trim())) {
+        showError($email, 'Formato de email no válido (nombre@dominio.ext).');
+        ok = false;
+        }
+        if (!$cardType.value) {
+        showError($cardType, 'Selecciona el tipo de tarjeta.');
+        ok = false;
+        }
+        const num = $cardNumber.value.trim();
+        if (!reCardNumber.test(num)) {
+        showError($cardNumber, 'El número debe tener 13, 15, 16 o 19 dígitos (solo números).');
+        ok = false;
+        }
+        if ($cardHolder.value.trim().length < 3) {
+        showError($cardHolder, 'El titular debe tener al menos 3 caracteres.');
+        ok = false;
+        }
+        if (!$expMonth.value) {
+        showError($expMonth, 'Indica la fecha de caducidad.');
+        ok = false;
+        } else {
+        const [yy, mm] = $expMonth.value.split('-').map(Number);
+        const now = new Date();
+        const curY = now.getFullYear();
+        const curM = now.getMonth() + 1;
+        const notExpired = (yy > curY) || (yy === curY && mm >= curM);
+        if (!notExpired) {
+            showError($expMonth, 'La tarjeta está caducada.');
+            ok = false;
+        }
+        }
+        if (!reCVV.test($cvv.value.trim())) {
+        showError($cvv, 'El CVV debe tener 3 dígitos.');
+        ok = false;
+        }
+
+        if (ok) {
+        alert('Compra realizada'); // notificación de éxito (requisito)
+        // (opcional) form.reset(); clearAllErrors(); // si quieres limpiar tras comprar
+        }
+    });
+
+    // Borrar: limpia valores + mensajes + estados
+    $btnBorrar.addEventListener('click', () => {
+        form.reset();
+        clearAllErrors();
+        // reponer min dinámico por si algún navegador lo borra
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        $expMonth.min = `${y}-${m}`;
+    });
+    });
+
 })();

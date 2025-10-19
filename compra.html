@@ -36,40 +36,47 @@
       <!-- Derecha: formulario de compra -->
       <aside class="panel form" style="padding:16px;">
         <h2>Finalizar compra</h2>
-        <form>
-          <input type="text" placeholder="Nombre y apellidos" required>
-          <input type="email" placeholder="Correo electrónico" required>
+        <form id="formCompra" novalidate>
+          <!-- Nombre completo -->
+          <label for="fullName">Nombre completo*</label>
+          <input id="fullName" name="fullName" type="text" required minlength="3" placeholder="Nombre y apellidos">
 
-          <label for="tipo">Tipo de tarjeta</label>
-          <select id="tipo" required>
-            <option value="">Selecciona...</option>
-            <option>Visa</option>
-            <option>Mastercard</option>
-            <option>American Express</option>
+          <!-- Email -->
+          <label for="emailCompra">Correo electrónico*</label>
+          <input id="emailCompra" name="emailCompra" type="email" required placeholder="nombre@dominio.ext">
+
+          <!-- Tipo de tarjeta -->
+          <label for="cardType">Tipo de tarjeta*</label>
+          <select id="cardType" name="cardType" required>
+            <option value="" selected>— Selecciona —</option>
+            <option value="visa">Visa</option>
+            <option value="mc">Mastercard</option>
+            <option value="amex">American Express</option>
           </select>
 
-          <input type="text" inputmode="numeric" placeholder="Número de tarjeta" required>
-          <input type="text" placeholder="Nombre del titular" required>
+          <!-- Número de tarjeta (13, 15, 16 o 19 dígitos) -->
+          <label for="cardNumber">Número de tarjeta*</label>
+          <input id="cardNumber" name="cardNumber" inputmode="numeric" autocomplete="cc-number" required
+                placeholder="Solo dígitos (13/15/16/19)"
+                pattern="^(?:\d{13}|\d{15}|\d{16}|\d{19})$" maxlength="19">
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <div>
-              <label for="cad">Caducidad</label>
-              <input id="cad" type="month" required aria-describedby="cad-hint" autocomplete="cc-exp">
-              <small id="cad-hint" style="opacity:.8;">MM/AAAA</small>
-            </div>
+          <!-- Titular -->
+          <label for="cardHolder">Nombre del titular*</label>
+          <input id="cardHolder" name="cardHolder" type="text" required minlength="3" autocomplete="cc-name">
 
-            <div>
-              <label for="cvv">CVV</label>
-              <input id="cvv" type="text" inputmode="numeric"
-                    pattern="\d{3,4}" title="3 o 4 dígitos"
-                    required autocomplete="cc-csc">
-            </div>
-          </div>
+          <!-- Caducidad (no expirada) -->
+          <label for="expMonth">Fecha de caducidad*</label>
+          <input id="expMonth" name="expMonth" type="month" required autocomplete="cc-exp">
 
+          <!-- CVV (3 dígitos) -->
+          <label for="cvv">CVV*</label>
+          <input id="cvv" name="cvv" type="text" inputmode="numeric" autocomplete="cc-csc" required
+                pattern="^\d{3}$" maxlength="3" placeholder="3 dígitos">
 
-          <div style="display:flex; gap:10px; margin-top:10px;">
-            <button class="btn" type="submit">Comprar</button>
-            <button class="btn" type="reset">Borrar</button>
+          <!-- Botones -->
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <button id="btnComprar" type="button" class="btn">Comprar</button>
+            <button id="btnBorrar"  type="button" class="btn btn-sec">Borrar</button>
           </div>
         </form>
       </aside>
@@ -87,5 +94,7 @@
       </div>
     </div>
   </footer>
+  <!-- ENLAZAMOS CON JS-->
+  <script src="script/app.js" defer></script>
 </body>
 </html>
