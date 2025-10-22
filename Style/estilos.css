@@ -77,7 +77,7 @@ main{padding:16px 0}
 .carrusel{margin-top:10px}
 .carrusel h2{margin-bottom:6px}
 
-/* Las flechas van sobre el carrusel, no arriba/abajo */
+/* Flechas */
 .carrusel .carrusel-inner{position:relative}        /* referencia para posicionar */
 .arrow{
   position:absolute;
@@ -87,7 +87,7 @@ main{padding:16px 0}
   border:1px solid var(--border);
   display:grid;place-items:center;
   border-radius:var(--radius);
-  background:#fff;                                  /* mismo estilo, sin “pijadas” */
+  background:#fff;            
 }
 .arrow.prev{left:8px}
 .arrow.next{right:8px}

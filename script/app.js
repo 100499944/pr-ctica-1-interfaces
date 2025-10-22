@@ -1,10 +1,5 @@
-/* script/app.js – EP02
-   - Home: login con localStorage (ya lo teníamos)
-   - Registro: validaciones estrictas + guardar + mensaje + sesión + redirect
-*/
-
 (function () {
-  // ------------------ Helpers almacenamiento ------------------
+  // <--Almacenamiento -->
   function getUsers() {
     try { return JSON.parse(localStorage.getItem('users')) || {}; }
     catch { return {}; }
@@ -28,17 +23,17 @@
     });
   }
 
-  // ------------------ Validadores ------------------
-  const reNombre     = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]{3,}$/; // >=3 letras (permite acentos/espacios)
-  const reSoloLetras = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'-]+$/;
-  const reEmail      = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  // <-- Validadores -->
+  const reNombre     = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]{3,}$/; // >=3 letras 
+  const reSoloLetras = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'-]+$/; // solo letras
+  const reEmail      = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; // formato básico email
   // Password: >=8, >=2 dígitos, >=1 especial, >=1 mayús, >=1 minús
-  const rePass = /^(?=(?:.*\d){2,})(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
+  const rePass = /^(?=(?:.*\d){2,})(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[A-Z])(?=.*[a-z]).{8,}$/; 
 
   function validarNombre(v) {
     return reNombre.test(v.trim());
   }
-  // Apellidos: al menos DOS “cadenas” de >=3 letras cada una
+  // Apellidos: al menos 2 cadenas de >=3 letras cada una
   function validarApellidos(v) {
     const piezas = v.trim().split(/\s+/).filter(Boolean);
     if (piezas.length < 2) return false;
@@ -48,7 +43,7 @@
     return reEmail.test(v.trim());
   }
   function validarNacimiento(v) {
-    // Evitar datos irreales: entre 1900-01-01 y hoy
+    // Evitar datos irreales (entre 1900-01-01 y hoy)
     if (!v) return false;
     const d = new Date(v + 'T00:00:00');
     if (Number.isNaN(d.getTime())) return false;
@@ -68,7 +63,7 @@
     return okTypes.includes(file.type);
   }
 
-  // ------------------ HOME: login ------------------
+  // <-- HOME: login -->
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.widget.login form');
     if (!form) return; // no estamos en Home
@@ -96,7 +91,7 @@
     });
   });
 
-  // === Carrusel (Home y Versión b): 3+ packs, flechas cíclicas, auto cada 2s ===
+  // <-- Carrusel -->
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.carrusel .carrusel-inner').forEach(inner => {
             const packs = Array.from(inner.querySelectorAll('.pack'));
@@ -123,13 +118,13 @@
             let timer = setInterval(next, 2000);
             const restart = () => { clearInterval(timer); timer = setInterval(next, 2000); };
 
-            // (opcional) pausar al pasar el ratón
+            // pausar al pasar el ratón (por comodidad)
             inner.addEventListener('mouseenter', () => clearInterval(timer));
             inner.addEventListener('mouseleave', () => restart());
         });
     });
 
-    // === Compra: pinta el pack seleccionado (?pack=andes|paris|tanzania) ===
+    // <-- COMPRA: cargar pack según URL -->
     document.addEventListener('DOMContentLoaded', () => {
         const onCompra = /compra\.html/i.test(location.pathname) || /compra\.html/i.test(location.href);
         if (!onCompra) return;
@@ -172,9 +167,9 @@
     });
 
 
-  // ------------------ REGISTRO: validaciones + guardar ------------------
+// <-- REGISTRO -->
   document.addEventListener('DOMContentLoaded', () => {
-    // Form de registro tal y como lo pegaste (IDs ya presentes)
+    // ¿Estamos en registro?
     const regForm = document.querySelector('section.panel.widget.form form');
     if (!regForm) return; // no estamos en registro
 
@@ -197,12 +192,12 @@
     $priv?.addEventListener('change', syncBoton);
     syncBoton();
 
-    // Función para marcar campo inválido (accesible)
+    // Función para marcar campo inválido
     function marcarInvalido(input, msg) {
       if (!input) return;
       input.setAttribute('aria-invalid', 'true');
       input.setCustomValidity(msg || 'Dato inválido');
-      input.reportValidity(); // muestra tooltip nativo
+      input.reportValidity(); 
     }
     function limpiarInvalido(input) {
       if (!input) return;
@@ -211,7 +206,7 @@
     }
 
     async function onGuardar() {
-      // Validaciones una a una según enunciado
+      // Validaciones una a una 
       const nombreV = $nombre.value.trim();
       if (!validarNombre(nombreV)) {
         marcarInvalido($nombre, 'El nombre debe tener al menos 3 letras.');
@@ -256,7 +251,6 @@
 
       const file = $foto.files?.[0];
       if (!validarArchivo(file)) {
-        // Solo webp, png, jpg
         marcarInvalido($foto, 'Adjunta imagen .webp, .png o .jpg.');
         return;
       } else limpiarInvalido($foto);
@@ -272,9 +266,6 @@
         marcarInvalido($login, 'Ese login ya existe. Elige otro.');
         return;
       }
-
-      // Convertir imagen a DataURL para guardarla (opcional)
-      const avatar = await readFileAsDataURL(file);
 
       // Guardar
       users[loginV] = {
@@ -294,19 +285,9 @@
     }
 
     $btn?.addEventListener('click', onGuardar);
-
-    // (opcional) Validación “al salir del campo” para feedback temprano
-    $nombre?.addEventListener('blur', () => validarNombre($nombre.value) ? limpiarInvalido($nombre) : marcarInvalido($nombre, 'El nombre debe tener al menos 3 letras.'));
-    $apellidos?.addEventListener('blur', () => validarApellidos($apellidos.value) ? limpiarInvalido($apellidos) : marcarInvalido($apellidos, 'Dos apellidos de 3+ letras cada uno.'));
-    $email?.addEventListener('blur', () => validarEmail($email.value) ? limpiarInvalido($email) : marcarInvalido($email, 'Formato de email no válido.'));
-    $email2?.addEventListener('blur', () => ($email2.value.trim() === $email.value.trim()) ? limpiarInvalido($email2) : marcarInvalido($email2, 'Debe coincidir con el email.'));
-    $nac?.addEventListener('blur', () => validarNacimiento($nac.value) ? limpiarInvalido($nac) : marcarInvalido($nac, 'Fecha no válida.'));
-    $login?.addEventListener('blur', () => validarLogin($login.value) ? limpiarInvalido($login) : marcarInvalido($login, 'Mínimo 5 caracteres.'));
-    $pass?.addEventListener('blur', () => validarPass($pass.value) ? limpiarInvalido($pass) : marcarInvalido($pass, '8+, 2 números, 1 especial, 1 mayús, 1 minús.'));
-    $foto?.addEventListener('change', () => validarArchivo($foto.files?.[0]) ? limpiarInvalido($foto) : marcarInvalido($foto, 'Imagen .webp, .png o .jpg.'));
   });
 
-    // === COMPRA (versión c) — mensajes inline + éxito + borrar limpio ===
+    // <-- COMPRA (versión c) -->
     document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formCompra');
     if (!form) return;
@@ -410,7 +391,6 @@
 
         if (ok) {
         alert('Compra realizada'); // notificación de éxito (requisito)
-        // (opcional) form.reset(); clearAllErrors(); // si quieres limpiar tras comprar
         }
     });
 
@@ -418,7 +398,7 @@
     $btnBorrar.addEventListener('click', () => {
         form.reset();
         clearAllErrors();
-        // reponer min dinámico por si algún navegador lo borra
+        // reponer min dinámico 
         const now = new Date();
         const y = now.getFullYear();
         const m = String(now.getMonth() + 1).padStart(2, '0');
@@ -426,21 +406,21 @@
     });
     });
 
-    // === Versión b (área de usuaria) ===
+    // <-- Versión b -->
     document.addEventListener('DOMContentLoaded', () => {
     // ¿Estamos en versionb?
     const isVersionB = /(^|\/)versionb\.html(\?|#|$)/i.test(location.pathname) || /versionb\.html/i.test(location.href);
     if (!isVersionB) return;
 
-    // ---- Acceso: requiere sesión ----
+    // <-- Accesso -->
     const sessionUser = localStorage.getItem('sessionUser');
     if (!sessionUser) {
-        // sin sesión: fuera a Home
+        // si no hay sesión, redirigir a home
         location.replace('index.html?needLogin=1');
         return;
     }
 
-    // ---- Cargar datos de usuario para perfil ----
+    // <-- Cargar datos de usuario para perfil -->
     const users = (() => { try { return JSON.parse(localStorage.getItem('users')) || {}; } catch { return {}; } })();
     const u = users[sessionUser] || {};
     const profName = document.getElementById('profName');
@@ -454,7 +434,7 @@
     const bannerName = document.getElementById('bannerName');
     if (bannerName) bannerName.textContent = (u.nombre && u.nombre.trim()) ? u.nombre : sessionUser;
 
-    // ---- Cerrar sesión (modal confirmar/cancelar) ----
+    // <-- Cerrar sesión (confirmar/cancelar) -->
     const btnLogout = document.getElementById('btnLogout');
     const modal = document.getElementById('logoutModal');
     const btnCancel = document.getElementById('cancelLogout');
@@ -468,12 +448,10 @@
     modal?.addEventListener('click', (e) => { if (e.target === modal) hideModal(); }); // cerrar al clicar fuera
     btnConfirm?.addEventListener('click', () => {
         localStorage.removeItem('sessionUser');
-        // (opcional) también podrías limpiar más cosas si hace falta
         location.href = 'index.html';
     });
 
-    // ---- Últimos consejos (persistentes) ----
-    // Estructura localStorage['tips'] = [{id, title, desc, url, ts}, ...]
+    // <-- Últimos consejos -->
     function getTips() {
         try { return JSON.parse(localStorage.getItem('tips')) || []; }
         catch { return []; }
@@ -482,7 +460,7 @@
     localStorage.setItem('tips', JSON.stringify(arr || []));
     }
 
-    // Render: siempre los 3 más recientes (ordenados por ts desc)
+    // Los 3 más recientes 
     function renderTips() {
         const list = document.getElementById('tipsList');
         if (!list) return;
@@ -497,11 +475,9 @@
             list.appendChild(li);
         });
     }
-
-    // Pintar al entrar
     renderTips();
 
-    // ---- Formulario para añadir consejos ----
+    // <-- Formulario para añadir consejos -->
     const form = document.getElementById('tipsForm');
     const tipTitle = document.getElementById('tipTitle');
     const tipDesc  = document.getElementById('tipDesc');
@@ -544,13 +520,13 @@
             id:  now,
             title,
             desc,
-            url: `consejo.html?id=${now}`, // página “no real” (válido por enunciado)
+            url: `consejo.html?id=${now}`, 
             ts:  now
         });
         setTips(tips);
 
-        renderTips();   // repinta top-3
-        form.reset();   // limpia campos
+        renderTips();   
+        form.reset();   
     });
     });
 })();

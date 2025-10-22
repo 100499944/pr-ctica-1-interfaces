@@ -46,7 +46,7 @@
           </div>
           <div>
             <label for="apellidos">Apellidos</label>
-            <!-- (Los 2 apellidos de ≥3 letras los validaremos en JS) -->
+            <!-- (2 apellidos de ≥3 letras ) -->
             <input id="apellidos" name="apellidos" type="text" autocomplete="family-name" required>
           </div>
         </div>
@@ -80,10 +80,10 @@
         <!-- Password -->
         <div style="margin-top:8px;">
           <label for="pass">Contraseña</label>
-          <!-- CAMBIO: patrón y título explicativo (coincide con el enunciado) -->
+          <!-- CAMBIO: patrón y título explicativo -->
           <input id="pass" name="pass" type="password" autocomplete="new-password" required
-                 pattern="^(?=(?:.*\d){2,})(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?])(?=.*[A-Z])(?=.*[a-z]).{8,}$"  <!-- CAMBIO -->
-                 Mín. 8 caracteres, con al menos 2 números, 1 carácter especial, 1 mayúscula y 1 minúscula<!-- CAMBIO -->
+                 pattern="^(?=(?:.*\d){2,})(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?])(?=.*[A-Z])(?=.*[a-z]).{8,}$" 
+                 Mín. 8 caracteres, con al menos 2 números, 1 carácter especial, 1 mayúscula y 1 minúscula>
         </div>
 
         <!-- Subir imagen de perfil -->
@@ -103,7 +103,7 @@
         <!-- Guardar / Cancelar -->
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <!-- CAMBIO: sustituimos el enlace por un botón deshabilitado que habilita el checkbox -->
-          <button id="btnGuardar" class="btn" type="button" disabled>Guardar datos y acceder</button><!-- CAMBIO -->
+          <button id="btnGuardar" class="btn" type="button" disabled>Guardar datos y acceder</button> 
           <a class="btn" href="index.html" aria-label="Cancelar y volver a inicio">Cancelar</a>
         </div>
       </form>
